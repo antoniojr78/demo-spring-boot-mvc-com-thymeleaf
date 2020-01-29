@@ -32,4 +32,16 @@ public class DepartamentoController {
 		// Obs.: URL set in the sidebar
 		return "redirect:/departamentos/cadastrar";
 	}
+	
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("departamento", service.buscarPorId(id));
+		return "/departamento/cadastro";
+	}
+	
+	@PostMapping("/editar")
+	public String editar(Departamento departamento) {
+		service.editar(departamento);
+		return "redirect:/departamentos/cadastrar";		
+	}
 }
