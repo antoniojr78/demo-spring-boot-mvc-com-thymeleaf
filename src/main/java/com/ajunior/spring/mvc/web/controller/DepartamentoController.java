@@ -2,6 +2,7 @@ package com.ajunior.spring.mvc.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import com.ajunior.spring.mvc.domain.Departamento;
@@ -20,7 +21,8 @@ public class DepartamentoController {
 	}
 	
 	@GetMapping("/listar")
-	public String listar() {
+	public String listar(ModelMap model) {
+		model.addAttribute("departamentos", service.buscarTodos());
 		return "/departamento/lista";
 	}
 	
