@@ -49,6 +49,18 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
 
+    	var url = null;
+    	
+    	// Obs.: Button located in the lista.html
+    	$('button[id*="btnexc_"]').click(function() {
+    		url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+    	});
+    	
+    	// Obs.: Button located in the modal.html
+    	$('#ok_confirm').click(function() {
+    		document.location.href = url;
+    	});
+    	
 		$(function() {
 			$('[data-toggle="popover"]').popover();
 		});
