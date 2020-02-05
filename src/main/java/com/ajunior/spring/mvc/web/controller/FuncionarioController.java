@@ -63,8 +63,13 @@ public class FuncionarioController {
 	
 	@GetMapping("/buscar/nome")
 	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
-		System.out.println(nome);
 		model.addAttribute("listfuncionarios", funcionarioService.buscarPorNome(nome));
+		return "/funcionario/lista";
+	}
+	
+	@GetMapping("/buscar/cargo")
+	public String getPorCargoId(@RequestParam("id") Long id, ModelMap model) {
+		model.addAttribute("listfuncionarios", funcionarioService.buscarPorCargoId(id));
 		return "/funcionario/lista";
 	}
 	
