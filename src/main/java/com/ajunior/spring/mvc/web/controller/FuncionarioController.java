@@ -1,8 +1,10 @@
 package com.ajunior.spring.mvc.web.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -70,6 +72,14 @@ public class FuncionarioController {
 	@GetMapping("/buscar/cargo")
 	public String getPorCargoId(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("listfuncionarios", funcionarioService.buscarPorCargoId(id));
+		return "/funcionario/lista";
+	}
+	
+	@GetMapping("/buscar/data")
+	public String getPorDatas(@RequestParam("dtentrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate entrada,
+			                  @RequestParam("dtsaida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida,
+			                  ModelMap model) {
+		model.addAttribute("listfuncionarios", funcionarioService.buscarPorDatas(entrada, saida));
 		return "/funcionario/lista";
 	}
 	
